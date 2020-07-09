@@ -1,3 +1,18 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.page-wrapper{
+  width: 100%;
+}
+.wrapper{
+  width: 1200px;
+  margin:  auto;
+}
+
+.dashboard-wrapper{
+  margin: 15px 5px;
+  vertical-align: middle;
+}
+.box{
+  border-radius: 10px;
+  margin: 20px 0;
+  width: 200px;
+  height: 150px;
+}

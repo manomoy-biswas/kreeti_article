@@ -1,2 +1,22 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<div class="page-wrapper">
+  <div class="article-wrapper">
+    <div class="card card-6">
+      <div class="card-body">
+        <div class="article-image-box">
+          <%= image_tag @article.image.url,class: "banner-image" %>
+        </div>
+        <h1 class="article-title text-center"><%= @article.article_name%><h1>
+        <div>
+          <p><%= @article.description %></p>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <%= link_to " Print Article",print_pdf_articles_path(article_id: @article.id, format: "pdf"), target: "_blank", class: "fa fa-print btn btn-outline-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render "comments/form"%>
+    <%# <%= render "comments/commentlist"%> %>
+  </div>
+</div>

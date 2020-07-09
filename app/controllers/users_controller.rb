@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+ before_action :authenticate_user!, only: [:destroy]
   before_action :set_user, only: [:edit, :show, :update]
 
   def index
@@ -46,6 +47,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
   end
 end

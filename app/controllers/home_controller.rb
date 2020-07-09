@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @posts = Article.filter_by(params[:filetr])
+    @articles = Article.includes(:user, :category).all
   end
 end

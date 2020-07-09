@@ -17,3 +17,23 @@
 @import "/*";
 @import "bootstrap";
 @import "font-awesome";
+
+.nav-item{
+  margin-right: 10px;
+}
+
+.fa-users, .fa-newspaper-o, .fa-tag{
+  font-size: 72px;
+}
+.fa-edit, .fa-trash, .fa-eye{
+  font-size: 32px;
+}
+.fa-edit{
+  color: #0f0bdd;
+} 
+.fa-trash{
+  color: #fa0505;
+}
+.fa-eye{
+  color: #dda50b;
+}

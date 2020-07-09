@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    refirect_to root_path, flash: {warning: "please login" } unless current_user.present?
+    redirect_to root_path, flash: {warning: "please login" } unless current_user.present?
   end
 end

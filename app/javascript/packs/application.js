@@ -3,15 +3,20 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+require("jquery")
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
+var string = $('.article-description').text();
+var str50 = string.substr(0,50) 
+$('.article-description').html(str50+'...'+'<a class="read-more" href="#">readmore</a>');
+$('.article-description').attr('data-text',string);
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+$('.read-more').click(function(e)
+{
+    e.preventDefault();
+    $(this).parent().html($(this).parent().attr('data-text'))
+
+})

@@ -5,18 +5,22 @@
       <div class="row ">
         <div class="col-12 col-sm-12 col-md-11">
           <div class="row">
-            <div class="col-12">
-              <h3 class="title"><%= article.article_name %></h3>
+            <div class = "col-12 col-md-4">
+              <%= image_tag article.image.url, class: "article-image"%>
             </div>
-            <div class="col-12">
-              <p class="task-description"><%= article.description %></p>
+            <div class="col-12 col-md-7">
+              <h3 class="title"><%= article.article_name %></h3>
+              <p class="article-description"><%= article.description %></p>
+            </div>
+            <div class="col-12 col-md-1">
+              <%= link_to "", "", class: "fa fa-thumbs-up"%>
             </div>
           </div>
         </div>
         <div class="col-12 col-sm-12 col-md-11">
-          <div class="row align-items-center">
-            <div class="col-12">
-              <%= link_to "", like_path, class: "fa fa-thumbs-up"%>
+          <div class="row ">
+            <div class="col-4 col-md-12 text-center">
+              <%= link_to "", article_path(article.id), class: "fa fa-eye"%>
             </div>
           </div>
         </div>
