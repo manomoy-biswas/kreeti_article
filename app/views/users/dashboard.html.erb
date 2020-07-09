@@ -1,0 +1,26 @@
+<div class="row">
+  <% if current_user.admin %> 
+    <div class="col-sm-12 col-md-6">
+      <div class="text-center">
+        <%= link_to users_path, class: "box btn btn-success" do%>
+          <div class="dashboard-wrapper">
+            <div class="user-icon">
+              <i class="fa fa-users"></i>
+              <h2>Users</h2>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <div class="text-center">
+      <%= link_to articles_path, class: "box btn btn-danger" do %>
+        <div class="dashboard-wrapper">
+          <div class="fa fa-tag" aria-hidden="true"></div>
+          <h2>Articles</h2>
+        </div>
+      <% end %>
+    </div>
+  </div>
+

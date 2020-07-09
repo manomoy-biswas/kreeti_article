@@ -1,2 +1,32 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="page-wrapper">
+  <div class="article-wrapper">
+    <div class="card card-6">
+      <div class="card-body">
+        <div class="task-list">
+          <div class="row">
+            <div class="col-4 col-md-6 col-lg-8 text-left">
+              <%= link_to "CREATE POST", new_article_path, class: "btn btn-primary btn-lg", data: {turbolinks: false, disable_with: "creating..." } %>
+            </div>
+            <div class="col-8 col-md-6 col-lg-4 task-index-col text-right">
+              <%=form_tag(articles_path, action:"index", method: :get) do %>
+                <div class="form-group row">
+                  <% filters=["Liked", "Non liked"]%>
+                  <span class="fa fa-filter col-2 text-right"></span>
+                  <div class="col-7 text-right">
+                    <%= select_tag(:filters, options_for_select(filters, params[:filters]), prompt:"All", class:"form-control custom-select d-block w-100 text-center") %>
+                  </div>
+                  <div class="col-3">
+                    <%= submit_tag "Filter", class:"btn btn-dark" %>
+                  </div>
+                </div>  
+              <% end %>
+            </div>
+          </div>
+          <div class="index-table">
+            <%= render "home/article_list"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

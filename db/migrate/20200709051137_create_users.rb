@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :mobile, null: false, limit: 14
       t.boolean :admin, default: false
       t.string :avater
-      t.string :password_digest, null: false, limit: 30
+      t.string :password_digest, null: false
 
       t.timestamps
     end

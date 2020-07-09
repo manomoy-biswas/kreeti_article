@@ -1,0 +1,41 @@
+<%= form_for @article, html: { multipart: true} do |form| %>
+  <div class="page-wrapper">
+    <div class="wrapper">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="title text-center"> Add Article</h1>
+          <div class="form-group row">
+            <%= form.label :category, "Category", for: "article category", class:"col-12 col-sm-4 col-md-3 col-form-label"%>
+            <div class="col-12 col-sm-8 col-md-9">
+              <%= form.select :category_id, options_from_collection_for_select(Category.all.order("name ASC"), :id, :name, form.object.category_id), { prompt: "Choose..." }, {autofocus: true, required: true, class:"custom-select d-block w-100"} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= form.label :article_name, for: "article name", class:"col-sm-2 col-form-label"%>
+            <div class="col-sm-10">
+              <%= form.text_field :article_name, for: "article name", class: "form-control", autofocus: true, placeholder: "Enter Article title", required: true %>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <%= form.label :description, for: "description", class:"col-sm-2 col-form-label"%>
+            <div class="col-sm-10">
+              <%= form.text_area :description,for: "description", class: "form-control", autofocus: true, placeholder: "Enter description" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= form.label :image, for: "article picture", class:"col-sm-2 col-form-label"%>
+            <div class="col-sm-10">
+              <%= form.file_field :image, for: "article picture", class: "form-control", required: true %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <strong><%= form.submit "Sign up", class:"btn btn-primary" %></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
