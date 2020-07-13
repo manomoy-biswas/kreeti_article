@@ -1,22 +1,42 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-
 require("jquery")
 require("@rails/ujs").start()
-require("turbolinks").start()
+require("turbolinks")
 require("@rails/activestorage").start()
 require("channels")
 
-var string = $('.article-description').text();
-var str50 = string.substr(0,50) 
-$('.article-description').html(str50+'...'+'<a class="read-more" href="#">readmore</a>');
-$('.article-description').attr('data-text',string);
+$(()=>$(".hide").fadeOut(4000));
 
-$('.read-more').click(function(e)
-{
-    e.preventDefault();
-    $(this).parent().html($(this).parent().attr('data-text'))
+$(document).ready(function() {
+	var showChar = 50;
+	var ellipsestext = "... ";
+	var moretext = "more";
+	var lesstext = "less";
+  
+  $('.more').each(function() {
+		var content = $(this).html();
 
-})
+		if(content.length > showChar) {
+
+			var c = content.substr(0, showChar);
+			var h = content.substr(showChar-1, content.length - showChar);
+
+			var html = c + '<span class="moreellipses">' + ellipsestext+'</span><span class="morecontent"><span>'+ h +'</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+      $(this).html(html);
+		}
+
+  });
+
+	$(".morelink").click(function(){
+		if($(this).hasClass("less")) {
+			$(this).removeClass("less");
+			$(this).html(moretext);
+		} else {
+			$(this).addClass("less");
+			$(this).html(lesstext);
+		}
+		$(this).parent().prev().toggle();
+		$(this).prev().toggle();
+		return false;
+	});
+});

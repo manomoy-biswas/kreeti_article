@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :articles do
+    resources :comments
     collection do
       get :search
       get :print_pdf
@@ -11,6 +12,6 @@ Rails.application.routes.draw do
   end
 
   resources :categories
-  resources :comments
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

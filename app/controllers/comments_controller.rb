@@ -2,13 +2,10 @@ class CommentsController < ApplicationController
   before_action :authenticate_user! , only: [:new, :create, :update, :edit, :destroy]
   before_action :set_comment, only: [:edit, :update, :destroy]
 
-  def new
-    @comment = Comment.new
-  end
-  
   def create
     @comment = Comment.new(comments_params)
     @comment.user_id = current_user.id
+    @comment.article_id = params[:article_id]
     if @comment.save
       redirect_to request.referrer
     end

@@ -1,8 +1,15 @@
-<%= @comments.each do |commemt|%>
-  <div class="card-body">
-    <h1 class="article-title text-center"><%= commemt.comment_title%><h1>
+<% @comments.each do |com|%>
+  <div class="comment">
+    <h1 class="comment-title"><%= com.comment_title%></h1>
+    <small class="comment-user"> by <%= com.user.name%>, <%= DateTime.parse(com.updated_at.to_s).strftime("%d %b,%Y %I:%M %p") %></small>
     <div>
-      <p><%= comment.comment %></p>
+      <p class="comment-body"><%= simple_format(com.comment) %></p>
+      <div>
+        <%= link_to "", "", class: "fa fa-thumbs-up" %>
+        <% if current_user.id == com.user.id %>
+          <%= link_to "", edit_article_comment_path(com), class: "fa fa-edit edit-comment"%>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

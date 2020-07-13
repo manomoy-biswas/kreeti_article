@@ -16,6 +16,19 @@
   width: 1200px;
   margin: auto;
 }
+.article{
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
 .article-title{
-  width: 100%;
+  font-size: 28px;
+  text-align: left;
+  font-weight: bold;
+  padding-top: 10px;
+  margin: 0px;
+}
+.article-description{
+  padding-top:10px;
+  text-align: justify;
+  white-space: pre-wrap;
 }

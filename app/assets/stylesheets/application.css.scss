@@ -25,7 +25,7 @@
 .fa-users, .fa-newspaper-o, .fa-tag{
   font-size: 72px;
 }
-.fa-edit, .fa-trash, .fa-eye{
+.fa-edit, .fa-trash, .fa-eye, .fa-thumbs-up{
   font-size: 32px;
 }
 .fa-edit{
@@ -36,4 +36,18 @@
 }
 .fa-eye{
   color: #dda50b;
+}
+
+// a {
+// 	color: #0254EB
+// }
+// a:visited {
+// 	color: #0254EB
+// }
+a.morelink {
+	text-decoration:none;
+	outline: none;
+}
+.morecontent span {
+	display: none;
 }

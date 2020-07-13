@@ -1,7 +1,7 @@
 <% if @articles.present?%>
   <%i= 0 %>
   <% @articles.each do |article|%>
-    <div class="card-8">
+    <div class="card">
       <div class="row ">
         <div class="col-12 col-sm-12 col-md-11">
           <div class="row">
@@ -9,8 +9,8 @@
               <%= image_tag article.image.url, class: "article-image"%>
             </div>
             <div class="col-12 col-md-7">
-              <h3 class="title"><%= article.article_name %></h3>
-              <p class="article-description"><%= article.description %></p>
+              <h3 class="article-title"><%= article.article_name %></h3>
+              <p class= "article-description more"><%= article.description %></p>
             </div>
             <div class="col-12 col-md-1">
               <%= link_to "", "", class: "fa fa-thumbs-up"%>
@@ -36,3 +36,17 @@
     </div>
   </div>
 <% end %>
+
+<%# <script>
+  var string = $('.article-description').text();
+  var str50 = string.substr(0,50) 
+  $('.article-description').html(str50+'... '+'<a class="read-more" href="#">read more</a>');
+  $('.article-description').attr('data-text',string);
+
+  $('.read-more').click(function(e)
+  {
+      e.preventDefault();
+      $(this).parent().html($(this).parent().attr('data-text'))
+
+  })
+</script> %>

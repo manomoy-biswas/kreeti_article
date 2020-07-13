@@ -19,8 +19,9 @@ class ArticlesController < ApplicationController
     end
   end
   def show
-    @comment= Comment.new
-    @comments = Comment.where(article_id: @article_id)
+    @comment = Comment.new
+    @comment.article_id = @article.id
+    @comments = @article.comments.reverse
   end
 
   def print_pdf    
