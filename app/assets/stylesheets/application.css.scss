@@ -1,32 +1,190 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
+*= require bootstrap
+*= require_tree .
+*= require_self
+*/
 @import "/*";
 @import "bootstrap";
 @import "font-awesome";
 
-.nav-item{
-  margin-right: 10px;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  // font: 400 14px/1.5 "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-
-.fa-users, .fa-newspaper-o, .fa-tag{
+html{
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+a {
+  text-decoration: none;
+}
+body{
+  padding:0;
+  margin:0;
+}
+.container{
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+a:hover{
+  text-decoration: none;
+}
+.navbar{
+  padding-top: 0;
+  height: 50px;
+  background-color: #343a40;
+}
+.nav-container{
+  max-width: 100%;
+}
+.navbar-toggler-icon {
+  font-size: 23px;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 28' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,255,255)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.navbar-toggler{
+  border: none;
+  padding: 0;
+}
+.navbar-toggler:focus{
+  outline:none;
+}
+#navbarSupportedContent {
+  position: absolute;
+  width: 100%;
+  top:50px;
+  left: 0;
+  z-index: 1;
+}
+.nav-item{
+  background-color: #343a40;
+  padding-top: 4px;
+}
+.nav-item:hover {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+.nav-item a {
+  color: #ffffff;
+  font-size: 16px;
+}
+.nav-item:hover a{
+  color: #343a40;
+}
+.signin-btn{
+  padding: 5px 0 0 10px;
+}
+.dropdown{
+  z-index: 999;
+}
+.banner{
+  background: url("banner.jpg") no-repeat right top/cover ;
+  color: #ffffff;
+  position: relative;
+  height: 165px;
+  width: 100%;
+  margin-top: -45px;
+  z-index: -999;
+}
+.navbar-searchbar{
+  display: none;
+}
+.mobile-searchbar{
+  display: block;
+  padding: 6px 15px 1px;
+  box-shadow: 0 5px 3px 0 rgba(0,0,0,0.3);
+  height: 45px;
+  background-color: rgba(23,162,184,0.5);
+  z-index: 999;
+}
+.fa-search{
+  color: #ffffff;
+}
+.search-field{
+  display: inline-block;
+  width: 80%;
+}
+.search-input{
+  height: 33px;
+  width: 100%;
+  border-radius: 3px 0 0 3px;
+}
+.search-btn-field{
+  display: inline-block;
+  width: 20%;
+  margin-left: -5px;
+}
+.search-btn{
+  width: 100%;
+  height: 33px;
+  border-radius: 0 3px 3px 0;
+}
+.profile-menu{
+  width: 100%;
+  background-color: #343a40;
+  padding-bottom: 10px;
+}
+.profile-menu a{
+  color: #ffffff;
+}
+.profile-menu:hover{
+  background-color: #afaeae;
+}
+.dropdown-item a{
+  color: #343a40;
+}
+.authentication{
+  width: 100%;
+  background-color: #343a40;
+  padding-bottom: 10px;
+}
+.sign-in{
+  display: inline-block;
+}
+.sign-up{
+  display: inline-block;
+}
+.sign-in-btn, .sign-up-btn{
+  width: 110px;
+  font-size: 14px;
+}
+.sign-in-drop-down{
+  display: none;
+}
+.card{
+  margin: 10px;
+}
+.fa-users,
+.fa-newspaper-o,
+.fa-tag{
   font-size: 72px;
 }
-.fa-edit, .fa-trash, .fa-eye, .fa-thumbs-up{
+.fa-edit,
+.fa-trash,
+.fa-eye,
+.fa-thumbs-up,
+.fa-thumbs-down,
+.fa-share,
+.fa-filter{
   font-size: 32px;
+}
+.fa-thumbs-up{
+  color: #afaeae;
+}
+.fa-thumbs-up:hover{
+  color: #007bff;
+}
+.liked-btn{
+  color: #afaeae;
+}
+.liked{
+  color: #007bff;
 }
 .fa-edit{
   color: #0f0bdd;
@@ -37,17 +195,115 @@
 .fa-eye{
   color: #dda50b;
 }
-
-// a {
-// 	color: #0254EB
-// }
-// a:visited {
-// 	color: #0254EB
-// }
 a.morelink {
 	text-decoration:none;
 	outline: none;
 }
 .morecontent span {
 	display: none;
+}
+main{
+  min-height: calc(100vh - 65px - 30px);
+}
+.copyright{
+  margin: 0;
+  height: 30px;
+  background-color: #2E2F30;
+  color: #ffffff;
+  width: 100%;
+  font-size: 12px;
+  padding: 5px ;
+}
+@media screen and (min-width: 576px) {
+  .banner{
+    height: 300px;
+  }
+}
+@media screen and (min-width: 768px){
+  .navbar{
+    height: 55px;
+    z-index: 999;
+    background-color: rgba(52, 58, 64, 0.8);
+    box-shadow: 0 5px 3px 0 rgba(0,0,0,0.3);
+  }
+  #navbarSupportedContent{
+    position: relative;
+    top: 0;
+  }
+  .nav-item:hover {
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+  .nav-item a {
+    color: #ffffff;
+    font-size: 16px;
+  }
+  .nav-item:hover a{
+    color: #343a40;
+  }
+  .nav-item {
+    background:transparent;
+    height: 60px;
+    padding-top: 18px;
+  }
+  .nav-item a {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .mobile-searchbar{
+    display: none;
+  }
+  .banner{
+    height: 450px;
+    margin-top: -60px;
+    z-index: -999;
+  }
+  .navbar-searchbar{
+    display: block;
+    width: 215px;
+    padding: 25px 10px 0;
+  }
+  .profile-menu{
+    width:100px;
+    padding-top: 20px;
+    background-color: transparent;
+  }
+  .profile-menu:hover{
+    background-color: transparent;
+  }
+  .authentication{
+    display: none;
+  }
+  .sign-in{
+    display: inline-block;
+  }
+  .sign-up{
+    display: inline-block;
+  }
+  .sign-in-btn, .sign-up-btn{
+    width: 100px;
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  .sign-in-drop-down{
+    display: block;
+    margin-right: 25px;
+  }
+  .btn-group{
+    padding-top: 5px;
+  }
+  .logout-menu{
+    top: 55px;
+  }
+}
+
+@media screen and (min-width: 992px){
+  .navbar-searchbar{
+    min-width: 280px;
+    max-width: 400px;
+  }
+  .banner{
+    height: 540px;
+  }
 }

@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
+
   def like
     @like = Like.new
     @like.user_id = current_user.id
@@ -6,7 +9,7 @@ class LikesController < ApplicationController
     if @like.save
       redirect_to request.referrer
     else
-      redirect_to request.referrer, flash: {danger: "Something error occur"}
+      redirect_to request.referrer, flash: {danger: 'Something error occur'}
     end
   end
 

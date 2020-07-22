@@ -4,14 +4,18 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :articles do
-    resources :comments
+    resources :comments do
+      member do
+        put :comment_like
+      end
+    end
+    member do
+      put :like
+    end
     collection do
       get :search
       get :print_pdf
     end
   end
-
   resources :categories
-  
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

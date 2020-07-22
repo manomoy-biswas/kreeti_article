@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Rails kreeti_article: production" uuid="6cdfa6f8-7b47-4b6c-bb35-51a6b98c762d">
+      <driver-ref>greenplum</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/kreeti_article_production</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails kreeti_article: test" uuid="180f1a2d-f75f-42e9-ab2b-b3bacf44038c">
+      <driver-ref>greenplum</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/kreeti_article_test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails kreeti_article: development" uuid="d77cabf7-ac71-4e05-b785-7a12db7c85e6">
+      <driver-ref>greenplum</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/kreeti_article_development</jdbc-url>
+    </data-source>
+  </component>
+</project>

@@ -4,12 +4,41 @@
     <small class="comment-user"> by <%= com.user.name%>, <%= DateTime.parse(com.updated_at.to_s).strftime("%d %b,%Y %I:%M %p") %></small>
     <div>
       <p class="comment-body"><%= simple_format(com.comment) %></p>
-      <div>
-        <%= link_to "", "", class: "fa fa-thumbs-up" %>
-        <% if current_user.id == com.user.id %>
-          <%= link_to "", edit_article_comment_path(com), class: "fa fa-edit edit-comment"%>
-        <% end %>
+      <div class="action-row">
+        <div class="row">
+          <div class="col-5">
+            <%= link_to comment_like_article_comment_path(com), method: :put, remote: :true do %>
+              <div>
+                <span>
+                  <p>
+                    <i class="like-btn
+                      <% if current_user&.liked? com %>
+                        liked
+                      <% end %>
+                      fa fa-thumbs-up" id="comment_like_<%=com.id %>">
+                    </i>
+                  </p>
+                </span>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-2 text-center">
+            <% if current_user.id == com.user.id %>
+              <%= link_to "", edit_article_comment_path(com), class: "fa fa-edit edit-comment"%>
+            <% end %>
+          </div>
+          <div class="col-5 text-right">
+            <span><span class="like-count" id="comment_<%=com.id%>"><%= com.get_upvotes.size %></span> Likes</span>
+          </div>
+        </div>
       </div>
+
+
+
+
+
+
+
     </div>
   </div>
 <% end %>

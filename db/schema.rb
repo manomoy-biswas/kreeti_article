@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_124153) do
+ActiveRecord::Schema.define(version: 2020_07_16_220627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,13 @@ ActiveRecord::Schema.define(version: 2020_07_09_124153) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "like"
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.integer "cached_weighted_score", default: 0
+    t.integer "cached_weighted_total", default: 0
+    t.float "cached_weighted_average", default: 0.0
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -40,8 +46,15 @@ ActiveRecord::Schema.define(version: 2020_07_09_124153) do
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "articles_id"
-    t.index ["articles_id"], name: "index_comments_on_articles_id"
+    t.bigint "article_id"
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.integer "cached_weighted_score", default: 0
+    t.integer "cached_weighted_total", default: 0
+    t.float "cached_weighted_average", default: 0.0
+    t.index ["article_id"], name: "index_comments_on_articles_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -65,9 +78,25 @@ ActiveRecord::Schema.define(version: 2020_07_09_124153) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string "votable_type"
+    t.bigint "votable_id"
+    t.string "voter_type"
+    t.bigint "voter_id"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+    t.index ["voter_type", "voter_id"], name: "index_votes_on_voter_type_and_voter_id"
+  end
+
   add_foreign_key "articles", "categories"
   add_foreign_key "articles", "users"
-  add_foreign_key "comments", "articles", column: "articles_id"
+  add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "articles"
   add_foreign_key "likes", "users"

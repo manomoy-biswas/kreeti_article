@@ -1,0 +1,6 @@
+<% if current_user.liked? @article %>
+  $('#like_<%=@article.id%>').addClass('liked');
+<% else %>
+  $('#like_<%=@article.id%>').removeClass('liked');
+<% end %>
+$('#article_<%=@article.id%>').html('<%= @article.get_up_votes.size %>')

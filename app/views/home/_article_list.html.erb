@@ -1,29 +1,43 @@
 <% if @articles.present?%>
-  <%i= 0 %>
   <% @articles.each do |article|%>
-    <div class="card">
-      <div class="row ">
-        <div class="col-12 col-sm-12 col-md-11">
-          <div class="row">
-            <div class = "col-12 col-md-4">
-              <%= image_tag article.image.url, class: "article-image"%>
-            </div>
-            <div class="col-12 col-md-7">
-              <h3 class="article-title"><%= article.article_name %></h3>
-              <p class= "article-description more"><%= article.description %></p>
-            </div>
-            <div class="col-12 col-md-1">
-              <%= link_to "", "", class: "fa fa-thumbs-up"%>
+    <div class="card article-card">
+      <div class="row no-gutters">
+        <div class="col-12 col-md-5">
+          <%= image_tag article.image.url, class: "article-image"%>
+        </div>
+        <div class="col-12 col-md-7">
+          <%= link_to article_path(article.id), class: "article-link" do %>
+            <h3 class="article-title title-div"><%= article.article_name %></h3>
+          <% end %>
+          <p class= "article-description body-div more"><%= article.description %></p>
+        </div>
+        <div class="col-12">
+          <div class="action-row">
+            <div class="row">
+              <div class="col-3">
+                <%= link_to like_article_path(article), method: :put, remote: :true do %>
+                  <div>
+                    <span><p><i class="like-btn
+                     <% if current_user &.liked? article %>
+                       liked
+                     <% end %>
+                     fa fa-thumbs-up" id="like_<%=article.id %>"></i></p></span>
+                  </div>
+                <% end %>
+              </div>
+              <div class="col-2">
+                <%= link_to "", "", class: "share-btn fa fa-share"%>
+              </div>
+              <div class="col-7 text-right">
+                <span><span class="like-count" id="article_<%=article.id%>"><%= article.get_upvotes.size
+                %></span> Likes,</span>
+                <%= link_to article_path(article.id), class: "article-link" do %>
+                  <span class="comment-count"><%= article.comments.count%> Comments</span>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-11">
-          <div class="row ">
-            <div class="col-4 col-md-12 text-center">
-              <%= link_to "", article_path(article.id), class: "fa fa-eye"%>
-            </div>
-          </div>
-        </div>
+        </div> 
       </div>
     </div>
   <% end %>
@@ -36,17 +50,3 @@
     </div>
   </div>
 <% end %>
-
-<%# <script>
-  var string = $('.article-description').text();
-  var str50 = string.substr(0,50) 
-  $('.article-description').html(str50+'... '+'<a class="read-more" href="#">read more</a>');
-  $('.article-description').attr('data-text',string);
-
-  $('.read-more').click(function(e)
-  {
-      e.preventDefault();
-      $(this).parent().html($(this).parent().attr('data-text'))
-
-  })
-</script> %>

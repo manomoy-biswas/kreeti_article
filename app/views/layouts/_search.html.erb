@@ -1,10 +1,12 @@
-<%=form_tag search_articles_path, method: :get do %>
-  <div class="form-group row">
-    <div class="col-12 col-lg-9 text-center">
-      <%= text_field_tag :query, params[:query], placeholder: "Search for tasks..." , class:"form-control" %>
+<%=form_tag  method: :get do %>
+  <div class="form-group">
+    <div class="search-field">
+      <%= text_field_tag :query, params[:query], placeholder: "Search for articles..." , class:"form-control
+     search-input" %>
     </div>
-    <div class="col-12 col-lg-3 submit-search text-center">
-      <%= submit_tag "Search", class:"btn btn-outline-success" %>
+    <div class="search-btn-field">
+      <%#= submit_tag "", {class: "btn btn-success search-btn fa fa-search"} %>
+      <button type="submit" class="btn btn-success search-btn fa fa-search" name="commit"></button>
     </div>
   </div>
 <% end %>
