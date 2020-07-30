@@ -6,6 +6,8 @@
 @import "/*";
 @import "bootstrap";
 @import "font-awesome";
+@import "./users.scss";
+@import "./articles.scss";
 
 *{
   padding: 0;
@@ -20,6 +22,9 @@ html{
 }
 html::-webkit-scrollbar {
   display: none;
+}
+main{
+  min-height: calc(100vh - 50px - 30px);
 }
 a {
   text-decoration: none;
@@ -157,13 +162,17 @@ a:hover{
 .sign-in-drop-down{
   display: none;
 }
+#notice_wrapper{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 1;
+  left: 0;
+  font-size: 24px;
+}
 .card{
   margin: 10px;
-}
-.fa-users,
-.fa-newspaper-o,
-.fa-tag{
-  font-size: 72px;
 }
 .fa-edit,
 .fa-trash,
@@ -202,9 +211,7 @@ a.morelink {
 .morecontent span {
 	display: none;
 }
-main{
-  min-height: calc(100vh - 65px - 30px);
-}
+
 .copyright{
   margin: 0;
   height: 30px;
@@ -265,7 +272,7 @@ main{
     padding: 25px 10px 0;
   }
   .profile-menu{
-    width:100px;
+    width: auto;
     padding-top: 20px;
     background-color: transparent;
   }
@@ -288,7 +295,7 @@ main{
   }
   .sign-in-drop-down{
     display: block;
-    margin-right: 25px;
+    margin-right: 15px;
   }
   .btn-group{
     padding-top: 5px;

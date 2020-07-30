@@ -55,6 +55,7 @@
   }
   .category-list{
     display: block;
+    position: fixed;
     margin: 10px 0 5px 10px;
     border: 1px solid #969191;
     border-radius: 5px;
@@ -110,7 +111,7 @@
     min-height: 200px;
   }
   .title-div{
-    height: 55px;
+    height: 59px;
     padding-right: 20px;
   }
   .body-div{

@@ -1,8 +1,9 @@
 class SessionsController < ApplicationController
   before_action :set_user, only: [:create]
+  layout "dashboard", only: ["create"]
   
   def create
-    return redirect_to user_dashboard_path, flash: { warning: "Already logged in." } if current_user.present?
+    return redirect_to root_path, flash: { warning: "Already logged in." } if current_user.present?
     begin
       user = @user && @user.authenticate(params[:login][:password])
     rescue BCrypt::Errors::InvalidHash
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
     if user
       login(@user.id)
       if @user.admin
-        redirect_to user_dashboard_path, flash: { success: "login Successful" }
+        redirect_to overview_path, flash: { success: "login Successful" }
       else
         redirect_to root_path, flash: { success: "login Successful" }
       end
@@ -28,7 +29,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    return redirect_to user_dashboard_path, flash: { warning: "Already logged in" } if current_user.present?
+    return redirect_to root_path, flash: { warning: "Already logged in" } if current_user.present?
   end  
 
   private

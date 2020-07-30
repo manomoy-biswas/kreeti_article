@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:destroy, :edit, :like, :new]
+  layout "dashboard", only: [:edit, :index, :new]
+  before_action :authenticate_user!, only: [:create, :destroy, :edit, :like, :new, :update]
   before_action :set_article, only: [:edit, :destroy, :like, :show, :update]
-  # respond_to :js, :json, :html
 
   def create
     @article = Article.new(article_params)
@@ -25,20 +25,34 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit 
+    return unless current_user && (current_user.admin || @article.user_id == current_user.id)
+  end
+
+  def filtered_article
+    @categories = Category.all
+    @articles = 
+    @articles = Article.filtered_by_like(params[:id], params[:filters], current_user.id)
+  end
 
   def index
-    @articles = Article.find_article(current_user)
+    @articles = if current_user && current_user.admin
+      Article.all.includes(:category, :comments, :user )
+    else
+      @articles = Article.find_article(current_user)
+    end
   end
 
   def like
     if !current_user.liked? @article
       @article.liked_by current_user
+      Like.new(article_id: @article.id, user_id: current_user.id).save
     elsif current_user.liked? @article
       @article.unliked_by current_user
+      Like.where(article_id: @article.id, user_id: current_user.id).destroy_all
     end
   end
-
+  
   def new
     @article = Article.new
   end
@@ -55,13 +69,15 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @articles = Article.where('article_name like ?', "%#{params[:query]}%")
+    @articles = Article.search(params[:query]).order("updated_at DESC")
   end
 
   def show
+    
     @comment = Comment.new
     @comment.article_id = @article.id
-    @comments = @article.comments.reverse
+    @comments = @article.comments.order("id DESC")
+    render layout: "dashboard" if current_user && (current_user.admin || @article.user_id == current_user.id)
   end
 
   def update

@@ -1,24 +1,19 @@
 class CategoriesController < ApplicationController
+  layout "dashboard"
   before_action :set_category, only: [:edit, :update, :destroy]
-
   def index
     @categories = Category.all
-  end
-
-  def new
     @category = Category.new
+    # render layout: "dashboard"
   end
 
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to categories_path, flash: {success: "category added"}
+      redirect_to request.referrer, flash: {success: "category added"}
     else
       render "new"
     end
-  end
-
-  def edit
   end
 
   def destroy

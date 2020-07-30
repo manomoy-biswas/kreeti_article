@@ -1,13 +1,13 @@
-<div class="category-list">
+<section class="category-list">
   <div class="category-header">
     <p class="category-title">Categories</p>
   </div>
   <div class="category-item">
-    <%= link_to "All", "", class: "category-item-title" %>
+    <%= link_to "All", filtered_article_articles_path(id: 0), class: "category-item-title" %>
   </div>
   <% @categories.each do |category| %>
     <div class="category-item">
-      <%= link_to category.category_name, "", class: "category-item-title" %>
+      <%= link_to category.category_name, filtered_article_articles_path(id: category.id), class: "category-item-title" %>
     </div>
   <% end %>
 </div>
@@ -18,8 +18,8 @@
   </a>
   <div class="dropdown-menu category-list" aria-labelledby="categoryDropdown">
     <% @categories.each do |category| %>
-      <%= link_to category.category_name, "", class: "dropdown-item" %>
+      <%= link_to category.category_name, filtered_article_articles_path(id: category.id), class: "dropdown-item" %>
       <div class="dropdown-divider"></div>
     <% end %>
   </div>
-</div>
+</section>

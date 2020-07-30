@@ -15,20 +15,19 @@
           <div class="action-row">
             <div class="row">
               <div class="col-3">
-                <%= link_to like_article_path(article), method: :put, remote: :true do %>
-                  <div>
-                    <span><p><i class="like-btn
-                     <% if current_user &.liked? article %>
-                       liked
-                     <% end %>
-                     fa fa-thumbs-up" id="like_<%=article.id %>"></i></p></span>
-                  </div>
+                <% if current_user %>
+                  <%= link_to like_article_path(article), method: :put, remote: :true do %>
+                    <div>
+                      <span><p><i class="like-btn
+                      <% if current_user &.liked? article %>
+                        liked
+                      <% end %>
+                      fa fa-thumbs-up" id="like_<%=article.id %>"></i></p></span>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
-              <div class="col-2">
-                <%= link_to "", "", class: "share-btn fa fa-share"%>
-              </div>
-              <div class="col-7 text-right">
+              <div class="col-9 text-right">
                 <span><span class="like-count" id="article_<%=article.id%>"><%= article.get_upvotes.size
                 %></span> Likes,</span>
                 <%= link_to article_path(article.id), class: "article-link" do %>

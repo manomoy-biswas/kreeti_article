@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
- before_action :authenticate_user!, only: [:destroy]
+  layout "dashboard", except: [:new]
+  before_action :authenticate_user!, only: [:destroy]
   before_action :set_user, only: [:edit, :show, :update]
 
   def index
     @users = User.all
+    # render layout: "dashboard"
   end
 
   def new
@@ -21,13 +23,15 @@ class UsersController < ApplicationController
 
   def show
   end
+
   def destroy
     return unless current_user.admin
-    return redirect_to users_path, flash: {success: t("user.destroy_success")} if @user.destroy
-    redirect_to users_path, flash: {success: t("user.failed")}
+    return redirect_to request.referrer, flash: {success: t("user.destroy_success")} if @user.destroy
+    redirect_to request.referrer, flash: {success: t("user.failed")}
   end
 
   def edit
+    render layout: "dashboard"
     redirect_to root_path if !current_user.admin
   end 
 

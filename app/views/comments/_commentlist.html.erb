@@ -1,4 +1,4 @@
-<% @comments.each do |com|%>
+<% @comments.each do |com| %>
   <div class="comment">
     <h1 class="comment-title"><%= com.comment_title%></h1>
     <small class="comment-user"> by <%= com.user.name%>, <%= DateTime.parse(com.updated_at.to_s).strftime("%d %b,%Y %I:%M %p") %></small>
@@ -6,39 +6,39 @@
       <p class="comment-body"><%= simple_format(com.comment) %></p>
       <div class="action-row">
         <div class="row">
-          <div class="col-5">
-            <%= link_to comment_like_article_comment_path(com), method: :put, remote: :true do %>
-              <div>
-                <span>
-                  <p>
-                    <i class="like-btn
-                      <% if current_user&.liked? com %>
-                        liked
-                      <% end %>
-                      fa fa-thumbs-up" id="comment_like_<%=com.id %>">
-                    </i>
-                  </p>
-                </span>
-              </div>
+          <div class="col-3">
+            <% if current_user %>
+              <%= link_to comment_like_comment_path(com.id), method: :put, remote: :true do %>
+                <div>
+                  <span>
+                    <p>
+                      <i class="like-btn
+                        <% if current_user&.liked? com %>
+                          liked
+                        <% end %>
+                        fa fa-thumbs-up" id="comment_like_<%= com.id %>">
+                      </i>
+                    </p>
+                  </span>
+                </div>
+              <% end %>
             <% end %>
           </div>
           <div class="col-2 text-center">
-            <% if current_user.id == com.user.id %>
-              <%= link_to "", edit_article_comment_path(com), class: "fa fa-edit edit-comment"%>
+            <% if current_user && current_user.id == com.user.id %>
+              <%= link_to "", edit_comment_path(com), class: "fa fa-edit edit-comment"%>
+            <% end %>
+          </div>
+          <div class="col-2 text-center">
+            <% if current_user && current_user.id == com.user.id %>
+              <%= link_to "", comment_path(com), data: {confirm: "Are you sure?" }, method: :delete, class: "fa fa-trash edit-comment"%>
             <% end %>
           </div>
           <div class="col-5 text-right">
-            <span><span class="like-count" id="comment_<%=com.id%>"><%= com.get_upvotes.size %></span> Likes</span>
+            <span><span class="like-count" id="comment_<%= com.id %>"><%= com.get_upvotes.size %></span> Likes</span>
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
     </div>
   </div>
 <% end %>

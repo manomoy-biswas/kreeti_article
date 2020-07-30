@@ -1,47 +1,81 @@
-<% if @articles.present?%>
-  <%i= 0 %>
-  <% @articles.each do |article|%>
-    <div class="card-8">
-      <div class="row ">
-        <div class="col-12 col-sm-12 col-md-11">
+<div class="page-wrapper">
+  <div class="article-wrapper">
+    <div class="card card-6">
+      <div class="card-body">
+        <div class="task-list">
           <div class="row">
-            <div class="col-4">
-              <%= image_tag article.image.url,class: "article-image"%>
+            <div class="col-5 col-md-7 col-lg-8 text-left">
+              <% if current_user.present? %>
+                <%= link_to "Create Post", new_article_path, class: "btn btn-primary", data: {turbolinks: false,
+                                                                                              disable_with: "wait..." } %>
+              <% end %>
             </div>
-            <div class="col-">
-              <h3 class="title"><%= article.article_name %></h3>
-            </div>
-            <div class="col-8">
-              <p class="article-description more"><%= article.description %></p>
+            <div class="col-7 col-md-5 col-lg-4 text-right">
+              
             </div>
           </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-11">
-          <div class="row align-items-center">
-            <% unless article.user_id == current_user.id %>
-              <div class="col-12">
-                <%= link_to "", "", class: "fa fa-thumbs-up"%>
+          <div>
+          <% if @articles.present?%>
+            <% @articles.each do |article|%>
+              <div class="card article-card">
+                <div class="row no-gutters">
+                  <div class="col-12 col-md-5">
+                    <%= image_tag article.image.url, class: "article-image"%>
+                  </div>
+                  <div class="col-12 col-md-7">
+                    <%= link_to article_path(article.id), class: "article-link" do %>
+                      <h3 class="article-title title-div"><%= article.article_name %></h3>
+                    <% end %>
+                    <p class= "article-description body-div more"><%= article.description %></p>
+                  </div>
+                  <div class="col-12">
+                    <div class="action-row">
+                      <div class="row">
+                        <div class="col-2 text-center">
+                          <% if current_user %>
+                            <%= link_to like_article_path(article), method: :put, remote: :true do %>
+                              <div>
+                                <span><p><i class="like-btn
+                                <% if current_user &.liked? article %>
+                                  liked
+                                <% end %>
+                                fa fa-thumbs-up" id="like_<%=article.id %>"></i></p></span>
+                              </div>
+                            <% end %>
+                          <% end %>
+                        </div>
+                        <% if current_user.admin || article.user_id == current_user.id %>
+                          <div class="col-3 text-center">
+                            <%= link_to "", edit_article_path(article), class: "fa fa-edit" %>
+                          </div>
+                          <div class="col-3 text-center">
+                            <%= link_to "", article_path(article), method: :delete, class: "fa fa-trash"%>
+                          </div>
+                        <% end %>
+                        <div class="col-4 text-right">
+                          <span><span class="like-count" id="article_<%=article.id%>"><%= article.get_upvotes.size
+                          %></span> Likes,</span>
+                          <%= link_to article_path(article.id), class: "article-link" do %>
+                            <span class="comment-count"><%= article.comments.count%> Comments</span>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                </div>
               </div>
             <% end %>
-            <% if current_user.admin || article.user_id == current_user.id %>
-              <div class="col-12">
-                <%= link_to "", edit_article_path(article), class: "fa fa-edit" %>
+          <%else%>
+            <div class="card-8">
+              <div class="row ">
+                <div class="col-12">
+                  <p class="text-center">No Record Found</p>
+                </div>
               </div>
-              <div class="col-12">
-                <%= link_to "", article_path(article), method: :delete, class: "fa fa-trash"%>
-              </div>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
-      </div>
-    </div>
-  <% end %>
-<%else%>
-  <div class="card-8">
-    <div class="row ">
-      <div class="col-12">
-        <p class="text-center">No Record Found</p>
       </div>
     </div>
   </div>
-<% end %>
+</div>

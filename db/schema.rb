@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(version: 2020_07_16_220627) do
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.bigint "article_id", null: false
     t.string "comment_title", null: false
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "article_id"
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_220627) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
-    t.index ["article_id"], name: "index_comments_on_articles_id"
+    t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
